@@ -16,6 +16,8 @@ class Queue:
         return None
 
     def search(self, index):
+        if len(self._data) == 0 or index < 0:
+            raise IndexError("list index out of range")
         if self._data:
             return self._data[index]
         return None
