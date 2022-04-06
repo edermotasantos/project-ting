@@ -41,7 +41,10 @@ def search_by_word(path_name, instance):
                     row = row + "."
                 occurrences.append({"linha": position + 1, "conteudo": row})
                 count += 1
-        
+
+    if count == 0:
+        return []
+
     word_dict["ocorrencias"] = occurrences
     word_list.append(word_dict)
 
