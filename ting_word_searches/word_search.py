@@ -16,6 +16,8 @@ def exists_word(word, instance):
             if word in row.lower():
                 occurrences.append({"linha": position + 1})
                 count += 1
+    if count == 0:
+        return []
         
     word_dict["ocorrencias"] = occurrences
     word_list.append(word_dict)
