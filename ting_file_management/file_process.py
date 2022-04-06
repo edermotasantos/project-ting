@@ -16,7 +16,7 @@ def process(path_file, instance):
     dict_process["nome_do_arquivo"] = path_file
     dict_process["qtd_linhas"] = number_of_rows
     dict_process["linhas_do_arquivo"] = data_list
-   
+
     if len(instance) == 0:
         path_file_list.append(path_file)
         instance.enqueue(dict_process)
@@ -29,13 +29,16 @@ def remove(instance):
         print("Não há elementos", file=sys.stdout)
     else:
         instance.dequeue()
-        print("Arquivo statics/arquivo_teste.txt removido com sucesso\n", file=sys.stdout)
+        print(
+            "Arquivo statics/arquivo_teste.txt removido com sucesso\n",
+            file=sys.stdout
+        )
 
 
 def file_metadata(instance, position):
     dict_metadata = {}
     try:
-        path_name = instance.search(position)   
+        path_name = instance.search(position)
         dict_metadata["nome_do_arquivo"] = path_name["nome_do_arquivo"]
         dict_metadata["qtd_linhas"] = path_name["qtd_linhas"]
         dict_metadata["linhas_do_arquivo"] = path_name["linhas_do_arquivo"]
