@@ -34,9 +34,11 @@ def remove(instance):
 
 def file_metadata(instance, position):
     dict_metadata = {}
-    path_name = instance.search(position)
-    dict_metadata["nome_do_arquivo"] = path_name["nome_do_arquivo"]
-    dict_metadata["qtd_linhas"] = path_name["qtd_linhas"]
-    dict_metadata["linhas_do_arquivo"] = path_name["linhas_do_arquivo"]
-    print(dict_metadata, file=sys.stdout)
-    
+    try:
+        path_name = instance.search(position)   
+        dict_metadata["nome_do_arquivo"] = path_name["nome_do_arquivo"]
+        dict_metadata["qtd_linhas"] = path_name["qtd_linhas"]
+        dict_metadata["linhas_do_arquivo"] = path_name["linhas_do_arquivo"]
+        print(dict_metadata, file=sys.stdout)
+    except IndexError:
+        print("Posição inválida", file=sys.stderr)
