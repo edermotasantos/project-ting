@@ -25,4 +25,24 @@ def exists_word(word, instance):
     return word_list
 
 def search_by_word(path_name, instance):
-    """Aqui irá sua implementação"""
+    word_list = []
+    word_dict = {}
+    occurrences = []
+    count = 0
+    word_dict["palavra"] = path_name
+
+    for position in range(len(instance)):
+        path_n = instance.search(position)
+        word_dict["arquivo"] = path_n["nome_do_arquivo"]
+
+        for position, row in enumerate(path_n["linhas_do_arquivo"]):
+            if path_name in row.lower():
+                if row[-1:] != ".":
+                    row = row + "."
+                occurrences.append({"linha": position + 1, "conteudo": row})
+                count += 1
+        
+    word_dict["ocorrencias"] = occurrences
+    word_list.append(word_dict)
+
+    return word_list
