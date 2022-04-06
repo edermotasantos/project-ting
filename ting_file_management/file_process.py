@@ -1,7 +1,5 @@
 import sys
 from ting_file_management.file_management import txt_importer
-from ting_file_management.queue import Queue
-
 
 
 def process(path_file, instance):
@@ -15,13 +13,13 @@ def process(path_file, instance):
             if path_file == path_name:
                 return len(instance)
 
-    if len(instance) == 0:
-        instance.enqueue(1)
-        path_file_list.append(path_file)
-
     dict_process["nome_do_arquivo"] = path_file
     dict_process["qtd_linhas"] = number_of_rows
     dict_process["linhas_do_arquivo"] = data_list
+   
+    if len(instance) == 0:
+        path_file_list.append(path_file)
+        instance.enqueue(dict_process)
 
     print(dict_process, file=sys.stdout)
 
@@ -35,4 +33,10 @@ def remove(instance):
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    dict_metadata = {}
+    path_name = instance.search(position)
+    dict_metadata["nome_do_arquivo"] = path_name["nome_do_arquivo"]
+    dict_metadata["qtd_linhas"] = path_name["qtd_linhas"]
+    dict_metadata["linhas_do_arquivo"] = path_name["linhas_do_arquivo"]
+    print(dict_metadata, file=sys.stdout)
+    
