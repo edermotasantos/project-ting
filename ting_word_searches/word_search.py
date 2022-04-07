@@ -4,7 +4,6 @@ def exists_word(word, instance):
     word_list = []
     word_dict = {}
     occurrences = []
-    count = 0
     word_dict["palavra"] = word
 
     for position in range(len(instance)):
@@ -14,8 +13,7 @@ def exists_word(word, instance):
         for position, row in enumerate(path_name["linhas_do_arquivo"]):
             if word in row.lower():
                 occurrences.append({"linha": position + 1})
-                count += 1
-    if count == 0:
+    if occurrences == []:
         return []
 
     word_dict["ocorrencias"] = occurrences
